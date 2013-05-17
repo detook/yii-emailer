@@ -130,8 +130,8 @@ class Emailer extends CApplicationComponent {
 	public function create($from, $to, $subject, $config = array()) {
 		$data = array_merge(isset($config['data']) ? $config['data'] : array(), $this->data);
 		$replacePairs = array();
-		foreach ($data as $from => $to) {
-			$replacePairs['{' . $from . '}'] = $to;
+		foreach ($data as $key => $value) {
+			$replacePairs['{' . $key . '}'] = $value;
 		}
 		$subject = strtr($subject, $replacePairs);
 		if (isset($config['body'])) {
